@@ -5,3 +5,155 @@ dont touch nodes module
 .spec.ts (daboloeba testis files)
 
 npx playwright test --ui (gashveba testis)
+
+# OrangeHRM E2E Testing Assignment Using Playwright (Total: 21 Points)
+
+## Project Setup (6 points)
+1. Initialize Playwright Project with TypeScript (2 points)
+```bash
+npm init playwright@latest
+```
+
+2. Create Base Test Configuration (2 points)
+```typescript
+// fixtures/base.setup.ts
+import { test as base } from '@playwright/test';
+
+export const test = base.extend({
+page: async ({ page }, use) => {
+await page.goto('https://opensource-demo.orangehrmlive.com/');
+page.setDefaultTimeout(10000);
+await use(page);
+}
+});
+```
+
+3. Create Test Utilities and Page Objects (2 points)
+```typescript
+// utils/test-helpers.ts
+export async function login(page) {
+await page.fill('input[name="username"]', 'Admin');
+await page.fill('input[name="password"]', 'admin123');
+await page.click('button[type="submit"]');
+
+await page.waitForURL('**/dashboard');
+}
+```
+
+## Test Tasks
+
+### Task 1: Login Functionality (10 points)
+```typescript
+test.describe('Login Tests', () => {
+test('successful login with valid credentials', async ({ page }) => {
+// Implementation required (2 points)
+// - Fill in login credentials
+// - Verify successful login
+// - Verify dashboard elements
+});
+
+test('unsuccessful login with invalid credentials', async ({ page }) => {
+// Implementation required (2 points)
+// - Try invalid credentials
+// - Verify error message
+});
+
+test('verify remember me functionality', async ({ page }) => {
+// Implementation required (1 point)
+// - Check remember me checkbox
+// - Verify session persistence
+});
+});
+```
+
+### Task 2: Employee Management (11 points)
+```typescript
+test.describe('Employee Management', () => {
+test('add new employee with complete details', async ({ page }) => {
+// Implementation required (2 points)
+// - Navigate to PIM
+// - Fill all required fields
+// - Upload employee picture
+// - Save and verify
+});
+
+test('search and verify created employee', async ({ page }) => {
+// Implementation required (2 points)
+// - Use employee list
+// - Apply search filters
+// - Verify search results
+});
+
+test('edit employee personal details', async ({ page }) => {
+// Implementation required (1 point)
+// - Modify employee information
+// - Save and verify changes
+});
+});
+```
+
+```
+
+## Example Page Object:
+```typescript
+// pages/login.page.ts
+export class LoginPage {
+constructor(private page) {}
+
+// Locators
+private userNameInput = 'input[name="username"]';
+private passwordInput = 'input[name="password"]';
+private loginButton = 'button[type="submit"]';
+private rememberMeCheckbox = 'input[type="checkbox"]';
+private errorMessage = '.oxd-alert';
+
+// Actions
+async login(username: string, password: string, remember: boolean = false) {
+await this.page.fill(this.userNameInput, username);
+await this.page.fill(this.passwordInput, password);
+if (remember) {
+await this.page.check(this.rememberMeCheckbox);
+}
+await this.page.click(this.loginButton);
+}
+
+// Assertions
+async verifyLoginError() {
+await this.page.waitForSelector(this.errorMessage);
+return this.page.isVisible(this.errorMessage);
+}
+
+async verifyDashboard() {
+await this.page.waitForURL('**/dashboard');
+return this.page.isVisible('.oxd-topbar-header-title');
+}
+}
+```
+
+## Grading Criteria:
+- Code quality and organization
+* Proper use of Page Object Model
+* Clean and maintainable code
+* Proper error handling
+
+- Test coverage and assertions
+* Comprehensive test scenarios
+* Proper assertions
+* Edge cases handled
+
+- Successfully passing tests
+* All tests pass consistently
+* Proper wait strategies used
+* Stable selectors implemented
+
+## Bonus Points (Optional):
+- Add screenshot capture on failure (+1 point)
+
+## Key Requirements:
+1. Implement Page Object Model
+2. Implement cleanup after tests
+
+3. Add meaningful assertions
+
+
+go to github.com/Kintsurr/project_automation
