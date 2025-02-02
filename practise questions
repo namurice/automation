@@ -1,0 +1,26 @@
+Few Practice Tasks
+
+For question #1
+1) In question 1 select correct answers
+2) Select second option in question #1
+3) Select option which only contains Digits
+For Question #2
+1) Using xpath selector find selector which contains text MAY
+2) Using css selector find last option
+3) Write selector which will find all options using loop select it one by one
+
+For Calendar
+1) Select 1 January of 2025
+
+Sortable Items:
+1) Move Breaking bad on the top of the list (Find element with CSS selector)
+2) Move Lord of the ring on the of the list (Find Element xpath selector)
+3) Move Marvel at the end of the list (Find element with Text selector)
+
+Selectable Grid:
+1) Click on first 3 items in the grid
+2) Click on the grid in pattern to make X
+3) Click on the grid for every odd number of index
+4) Click on every even number of the index after that looper every element check if element state
+is changed (is blue class will change based on if it clicked or not) if its not checked (Blue) click on
+it
