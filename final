@@ -1,0 +1,7 @@
+open vs new folder in terminal type npm init playwright@latest
+choose typescript (or js)
+bunch of enters
+dont touch nodes module
+.spec.ts (daboloeba testis files)
+
+npx playwright test --ui (gashveba testis)
